@@ -1,0 +1,236 @@
+import matplotlib.pyplot as figure
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
+import math
+import random
+import time
+
+#arduino
+import serial #pip install pyserial
+import time
+#arduino
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+#vector_Length=1
+
+x=0 #init location in x axe
+y=0 #init location in y axe
+z=0 #init location in z axe
+t=0
+
+
+
+def vector(X_angle,Y_angle,Z_angle,vector_Length):
+            x3 = vector_Length*math.cos(X_angle)
+            y3 = vector_Length*math.cos(Y_angle)
+            z3 = vector_Length*math.cos(Z_angle) 
+            vec = [x3,y3,z3]
+            return vec
+            
+def degree_to_radian(degree):
+            rad = degree*math.pi/180
+            return rad
+
+def loopi(vect , color):
+            global x
+            global y
+            global z
+            ax.quiver(x, y, z, vect[0], vect[1], vect[2],color = color) #init coordinates to how much in every axe
+            x = x+vect[0] #last location in x axe
+            y = y+vect[1] #last location in y axe
+            z = z+vect[2] #last location in z axe 
+
+
+vector(0,0,3.14,math.sqrt(6)) #radians (X_angle,Y_angle,Z_angle,vector_Length)    
+
+
+
+def animate(i):
+        #option1
+        '''
+        ser = serial.Serial('COM9', 9600, timeout=1)
+        #time.sleep(2)
+        ax.set_xlabel(i)
+        for i in range(20):
+            line = ser.readline()   # read a byte
+            if line:
+                string = line.decode()  # convert the byte string to a unicode string
+                num = int(string) # convert the unicode string to an int
+        ser.close()
+        if num==1:
+            loopi(vector(0.9+i*0.1,0.955,0.955,math.sqrt(5)) , color = 'y')
+            ax.autoscale()
+        '''
+        #option2
+        '''
+        loopi(vector(0.9-i*0.3,0.955,0.955,math.sqrt(5)) , color = 'y')
+        ax.autoscale()
+        '''
+        #option3
+        ser = serial.Serial('COM9')
+        ser.baudrate = 115200  # set Baud rate to 9600
+        ser.bytesize = 8     # Number of data bits = 8
+        ser.parity   ='N'    # No parity
+        ser.stopbits = 1 
+        #time.sleep(1)
+        ReadFromArduino = ser.read()
+        one ='1'
+        xtt = str(ReadFromArduino.decode('utf-8'))
+        #ax.set_xlabel(ReadFromArduino)
+        
+        if one in xtt:
+            loopi(vector(0.9-i*0.3,0.955,0.955,math.sqrt(5)) , color = 'y')
+            ax.autoscale()
+       
+
+
+
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
+
+ax.set_title('SnickIn')
+
+
+ani = animation.FuncAnimation( fig, animate,interval=50)
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
