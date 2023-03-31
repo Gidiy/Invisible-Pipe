@@ -1,7 +1,3 @@
-//A4-SDA
-//A5-SCL
-//D6=BUTTON
-
 #include <Wire.h>
 #include <MPU6050.h>
 MPU6050 mpu;
@@ -30,11 +26,12 @@ void loop() {
   yaw = yaw + norm.ZAxis * timeStep;
   status = digitalRead(6);
   delay((timeStep * 1000) - (millis() - timer));
-  Serial.print(status);
-  Serial.print(" ");
-  Serial.print(pitch * -1);
-  Serial.print(" ");
-  Serial.print(roll);
-  Serial.print(" ");
-  Serial.println(yaw * -1);
+  Serial.print(int(status));
+  Serial.print("x");
+  Serial.print(int(pitch*-1));
+  Serial.print("x");
+  Serial.print(int(roll));
+  Serial.print("x");
+  Serial.print(int(yaw*-1));
+   Serial.println("x");
 }
