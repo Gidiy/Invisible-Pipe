@@ -26,12 +26,13 @@ void loop() {
   yaw = yaw + norm.ZAxis * timeStep;
   status = digitalRead(6);
   delay((timeStep * 1000) - (millis() - timer));
-  Serial.print(int(status));
-  Serial.print("x");
-  Serial.print(int(pitch*-1));
-  Serial.print("x");
-  Serial.print(int(roll));
-  Serial.print("x");
-  Serial.print(int(yaw*-1));
-   Serial.println("x");
+  Serial.print(float(status));
+  Serial.print(" ");
+  Serial.print(float(pitch*-1));
+  Serial.print("");
+  Serial.print(float(roll));
+  Serial.print("");
+  Serial.print(float(yaw*-1));
+  Serial.print(" ");
+  Serial.println();
 }
