@@ -85,27 +85,33 @@ def animate(i):
             ax.autoscale()
         '''
         #'''
-        #option4
-        
+        #option4 
         arduino = serial.Serial('COM9', 115200)
-        arduino_data = arduino.readline()
-        decoded_values = str(arduino_data[0:len(arduino_data)-2].decode("utf-8"))
-        list_values = decoded_values.split('\\')
-        ax.set_xlabel(i)
-        ax.set_ylabel(list_values[0])
-        ax.set_zlabel(list_values)
-        #for item in list_values:
-         #   list_in_floats.append(int(item))
+        #ki = 5
+        #for k in range(ki):
+        try:
+            arduino_data = arduino.readline()
+            decoded_values = arduino_data.decode("ascii").strip('\r\n')
+            #decoded_values = str(arduino_data[0:len(arduino_data)].decode("ascii"))
+            #test = arduino.readline() #.decode('ascii')
+            #list_values = decoded_values.split('x')
+            #ax.set_xlabel(i)
+            ax.set_xlabel(i)
+            ax.set_ylabel(decoded_values)
+            #ax.set_zlabel(arduino_data)
+            #for item in list_values:
+            #   list_in_floats.append(int(item))
 
-        #ax.set_xlabel(i)
-        #ax.set_ylabel(list_values)
-        #ax.set_zlabel(list_in_floats[1])
-        #arduino_data = 0
-        #list_in_floats.clear()
-        #list_values.clear()
-        #arduino.close()
-        #'''
-
+            
+            #ax.set_ylabel(list_values)
+            #ax.set_zlabel(list_in_floats[1])
+            #arduino_data = 0
+            #list_in_floats.clear()
+            #list_values.clear()
+            #arduino.close()
+            #'''
+        except:
+            ax.set_ylabel("100")
 #ax.set_xlabel("x")
 #ax.set_ylabel("y")
 #ax.set_zlabel("z")
@@ -115,6 +121,144 @@ ax.set_title('SnickIn')
 list_values = []
 list_in_floats = []
 
-ani = animation.FuncAnimation( fig, animate,interval=50)
+ani = animation.FuncAnimation( fig, animate,interval=500)
 
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
