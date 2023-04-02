@@ -86,12 +86,12 @@ def animate(i):
         '''
         #'''
         #option4 
-        arduino = serial.Serial('COM9', 115200)
         #ki = 5
         #for k in range(ki):
         try:
+            arduino = serial.Serial('COM9', 115200)
             arduino_data = arduino.readline()
-            decoded_values = arduino_data.decode("ascii").strip('\r\n')
+            decoded_values = arduino_data.decode("utf-8").strip('\r\n')
             #decoded_values = str(arduino_data[0:len(arduino_data)].decode("ascii"))
             #test = arduino.readline() #.decode('ascii')
             #list_values = decoded_values.split('x')
@@ -124,141 +124,5 @@ list_in_floats = []
 ani = animation.FuncAnimation( fig, animate,interval=500)
 
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
