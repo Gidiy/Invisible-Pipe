@@ -29,7 +29,7 @@ def degrees_to_radians(degrees): #convert degrees to radians
     return degrees * math.pi / 180
 
 
-def plot_vector(vec, color): #recieve vector and color and drew an arrow between 2 dots on the 3D plot and update the last location that drew
+def plot_vector(vec, color): #recieve vector and color and draw an arrow between 2 dots on the 3D plot and update the last location that drew
     global location_x
     global location_y
     global location_z
@@ -73,7 +73,7 @@ def animate(frame):
 
 
 
-ax.set_title('SnickIn')
+ax.set_title('SneakIn')
 
 ani = animation.FuncAnimation(fig, animate, interval=0.01, frames=10)
 
