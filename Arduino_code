@@ -10,7 +10,7 @@ float yaw = 0;
 int status;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(6, INPUT);
   while (!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G)) {
     Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
@@ -26,13 +26,9 @@ void loop() {
   yaw = yaw + norm.ZAxis * timeStep;
   status = digitalRead(6);
   delay((timeStep * 1000) - (millis() - timer));
-  Serial.print(status);
-  Serial.print(" ");
-  Serial.print(int(pitch*-1));
-  Serial.print(" ");
-  Serial.print(int(roll));
-  Serial.print(" ");
-  Serial.print(int(yaw*-1));
-  Serial.print(" ");
+  char buffer[32];
+  snprintf(buffer, sizeof(buffer), "%d,%d,%d,%d", status, int(pitch*-1), int(roll) ,int(yaw*-1) );
+  Serial.write(buffer);
   Serial.println();
+  
 }
