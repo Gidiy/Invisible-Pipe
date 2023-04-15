@@ -18,18 +18,18 @@ location_z = 0
 time_elapsed = 0
 
 
-def vector(x_angle, y_angle, z_angle, vector_length):
+def vector(x_angle, y_angle, z_angle, vector_length): #recieve angle and length and build a vector
     x = vector_length * math.sin(x_angle)
     y = vector_length * math.sin(y_angle)
     z = vector_length * math.sin(z_angle)
     return [x, y, z]
 
 
-def degrees_to_radians(degrees):
+def degrees_to_radians(degrees): #convert degrees to radians
     return degrees * math.pi / 180
 
 
-def plot_vector(vec, color):
+def plot_vector(vec, color): #recieve vector and color and drew an arrow between 2 dots on the 3D plot and update the last location that drew
     global location_x
     global location_y
     global location_z
@@ -48,11 +48,24 @@ def animate(frame):
 
     try:
         status, pitch, roll, yaw = map(int, values)
+
+        print(f"Status: {status}, Pitch: {pitch}, Roll: {roll}, Yaw: {yaw}")
+        match 3:
+            case 1:
+                plot_vector(vector(0.9 - frame * 0.3, 0.955, 0.955, math.sqrt(5)), color='y') # original code
+                time.sleep(0.1)
+            case 2:
+                plot_vector(vector(degrees_to_radians(30), degrees_to_radians(0), degrees_to_radians(15), math.sqrt(5)),color='y') #test
+                time.sleep(0.1)
+
+            case 3:
+                plot_vector(vector(degrees_to_radians(pitch), degrees_to_radians(roll), degrees_to_radians(yaw), math.sqrt(5)), color='y') #with data
+
+
+
+        ax.autoscale()
         ax.set_xlabel(f'Time elapsed: {time_elapsed:.2f}s')
         ax.set_ylabel(f"Status: {status}, Pitch: {pitch}, Roll: {roll}, Yaw: {yaw}")
-        print(f"Status: {status}, Pitch: {pitch}, Roll: {roll}, Yaw: {yaw}")
-        plot_vector(vector(degrees_to_radians(10), degrees_to_radians(0), degrees_to_radians(0), math.sqrt(5)), color='y')
-        ax.autoscale()
     except ValueError as e:
         print(f"Error converting values to integers: {e}")
 
