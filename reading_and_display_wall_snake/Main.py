@@ -22,4 +22,7 @@ process2.wait()
 
 print("Great Job")
 
+#subprocess.run(["python", "save_arduino_to_txt.py"])
+
+
 sys.exit()
